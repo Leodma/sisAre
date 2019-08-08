@@ -1,11 +1,12 @@
 #capp/cadastros/routes.py
 
+import os
 from app.cadastros import main
 from app import db
 from app.cadastros.helpers import tira_paragrafo, cria_lista, lista_para_texto, cria_lista_db, cria_texto_formulario, troca_por_nulo, porcentagem
 from app.cadastros.models import Responsavel, Cadastro, Unidades, AtualizacaoCadastro
 from app.auth.models import User
-from flask import render_template, flash, request, redirect, url_for
+from flask import render_template, flash, request, redirect, url_for, send_from_directory
 from flask_login import login_required, login_user, current_user, login_required
 from app.cadastros.forms import CriaCadastro, ResponsavelForm, UnidadeForm, EditaCadastroForm
 
@@ -306,6 +307,10 @@ def edita_unidade(unidade):
 @main.app_errorhandler(404)
 def page_not_found(e):
     return render_template('error404.html'), 404
+
+@main.app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 
