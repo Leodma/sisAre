@@ -43,8 +43,6 @@ class User(UserMixin,db.Model):
         self.user_password = bcrypt.generate_password_hash(password).decode('utf-8')
         return 
 
-    
-
 
 @login_manager.user_loader
 def load_user(id):
