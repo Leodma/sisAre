@@ -1,7 +1,8 @@
 from app import create_app,db
 from app.auth.models import User
 
-if __name__ == "__main__":
+# remova a linha abaixo para rodar localmente
+# if __name__ == "__main__":
     flask_app = create_app('prod')
     
     with flask_app.app_context():
