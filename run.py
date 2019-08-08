@@ -3,12 +3,12 @@ from app.auth.models import User
 
 # remova a linha abaixo para rodar localmente
 # if __name__ == "__main__":
-    flask_app = create_app('prod')
+flask_app = create_app('prod')
     
-    with flask_app.app_context():
-        db.create_all()
+with flask_app.app_context():
+    db.create_all()
 
 
 
-    
-    flask_app.run()
+
+flask_app.run()
