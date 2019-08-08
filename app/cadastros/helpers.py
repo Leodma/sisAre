@@ -19,3 +19,9 @@ def troca_por_nulo(valor):
     if valor == ' ' or '' or "" or " ":
         valor = None
     return valor
+
+def porcentagem(valor, total):
+    if valor and total:
+        return (valor//100)*total
+    return 1
+

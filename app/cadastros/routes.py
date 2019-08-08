@@ -2,7 +2,7 @@
 
 from app.cadastros import main
 from app import db
-from app.cadastros.helpers import tira_paragrafo, cria_lista, lista_para_texto, cria_lista_db, cria_texto_formulario, troca_por_nulo
+from app.cadastros.helpers import tira_paragrafo, cria_lista, lista_para_texto, cria_lista_db, cria_texto_formulario, troca_por_nulo, porcentagem
 from app.cadastros.models import Responsavel, Cadastro, Unidades, AtualizacaoCadastro
 from app.auth.models import User
 from flask import render_template, flash, request, redirect, url_for
@@ -19,10 +19,11 @@ def index():
     regulariza = Cadastro.query.filter_by(modalidade='Regularização').count()
     novo = Cadastro.query.filter_by(modalidade='Cadastro Novo').count()
     adequa = Cadastro.query.filter_by(modalidade='Adequação').count()
+    graph = [1,1,1,0,0,0]
     if regulariza and novo and adequa:
-        graph = [   (regulariza*100)//total_cadastros,
-                    (novo*100)//total_cadastros,
-                    (adequa*100)//total_cadastros,
+        graph = [   porcentagem(regulariza, total_cadastros),
+                    porcentagem(novo, total_cadastros),
+                    porcentagem(adequa, total_cadastros),
                     regulariza, novo, adequa
                 ]
     user= User.query.all()
