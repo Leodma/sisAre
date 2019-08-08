@@ -22,7 +22,7 @@ def create_app(config_type): # dev, test ou prod
     configuration = os.path.join(os.getcwd(),'config', config_type + '.py')
     app.config.from_pyfile(configuration)
     app.register_error_handler(404, page_not_found)
-    app.add_url_rule('/favicon.ico',redirect_to=url_for('static', filename='favicon.ico'))
+    app.add_url_rule('/favicon.ico',redirect_to=url_for('static', filename='SisAre.ico'))
 
     db.init_app(app)
     bootstrap.init_app(app)
