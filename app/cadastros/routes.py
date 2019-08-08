@@ -308,7 +308,7 @@ def edita_unidade(unidade):
 def page_not_found(e):
     return render_template('error404.html'), 404
 
-@main.app.route('/favicon.ico')
+@main.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
