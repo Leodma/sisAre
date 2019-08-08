@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+            <h1> Usuários Cadastrados no Sistema</h1>
+            <hr>
+        <table class="table table-hover table-striped table-condensed">
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Nível de Acesso </th>   
+                <th>Editar</th>   
+                <th>Excluir</th>   
+            </tr>
+        {% for usuario in usuarios %}
+            <tr>
+                <td>{{usuario.user_name}}</td>
+                <td>{{usuario.user_email}}</td>
+                <td>{{usuario.user_cat}}</td>
+                <td><a  class="btn btn-default btn-xs" href="{{url_for('authentication.editar_usuario', user_id=usuario.id)}}">Editar</td>
+                
+                <td>
+                    <a href="#"  class="btn btn-danger btn-xs" onclick="Confirmar('Deseja mesmo excluir o usuário?', {{usuario.id}})">Excluir</a>
+                </td>
+                    
+                
+    
+            </tr>
+
+        {% endfor %}
+        </table>
+
+    </div>
+{% endblock %}

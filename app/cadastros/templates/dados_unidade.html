@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+    <div class="container container-cadastro">
+       
+        <div class="exibe-cadastro ">
+                <h2> <span>{{responsavel.nome}}</span></h2>
+              
+               
+        </div>
+        <hr>
+  
+            <ul class="exibe-cadastro lista list-group">
+              
+               
+                <li class="list-group-item">CPF: <strong>{{responsavel.cpf}}</strong></li>
+                <li  class="list-group-item">Email: <strong>{{responsavel.email}}</strong></li>
+                <li class="list-group-item">Telefone: <strong>{{responsavel.telefone}}</strong></li>
+                <!-- <li class="list-group-item">Insituição: <strong>{{responsavel.instituição}}</strong></li> -->
+                <h4>Cadastros sob sua responsabilidade: <span>{{total}}</span></h4>
+                
+                <table class="table table-hover table-striped table-condensed">
+                        <tr>
+                            <th>Numero</th>
+                            <th>Titulo</th>
+                            <th>Abrir</th>
+                        </tr>
+                       
+
+                            {% for cadastro in cadastros %}
+                            <tr>
+                            <td>{{cadastro.numero}}</td>
+                            <td>{{cadastro.titulo}}</td>
+                            <td> <a class="btn btn-success btn-xs" href="{{url_for('main.cadastro_completo',cadastro_numero=cadastro.numero)}}">Visualizar</a></td>
+                            </tr>
+        
+                            {% endfor %}
+                          
+                </table>  
+                
+            <hr>
+            <br>
+            <a type="button" class="btn btn-primary" href="#">Voltar</a>
+            <a type="button" class="btn btn-info" href="#">Editar dados da Unidade</a>
+        
+    </div>
+
+{% endblock content %}

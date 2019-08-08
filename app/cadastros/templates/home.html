@@ -1,0 +1,129 @@
+{% extends 'layout.html' %}
+
+
+{%block links %}
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/circle.css') }}">
+{% endblock links %}
+
+{% block content %}
+<div class="container">
+    
+    
+    <hr>
+    <div class="graficos col-md-6">
+
+            <div class=grafico-box>
+                    <div class="c100 p100 ">
+                            
+                            <span>{{total}}</span>
+                            <div class="slice">
+                                <div class="bar"></div>
+                                <div class="fill"></div>
+                            </div>
+                        </div>
+                        <p>Total de Cadastros</p>
+                       
+                </div>
+
+        <div class=grafico-box>
+            <div class="c100 p{{graph[0]}} center green">
+                    <span>{{graph[0]}}%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+            </div>
+            <p>Cadastros Regularização</p>
+            <p><strong>{{graph[3]}}</strong></p>
+
+        </div>
+        
+        <div class=grafico-box>
+            <div class="c100 p{{graph[1]}} center orange">
+                    <span>{{graph[1]}}%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+            <p>Cadastros Novos</p>
+            <p><strong>{{graph[4]}}</strong></p>
+        </div>
+    
+        <div class=grafico-box>
+                <div class="c100  p{{graph[2]}} center green">
+                    <span>{{graph[2]}}%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                </div>     
+            </div>
+            <p>Cadastros Adequação</p>
+            <p><strong>{{graph[5]}}</strong></p>
+        </div>
+    </div>
+    
+    <div class="container col-md-6">
+    
+        <h2>Ultimas Atualizações</h2>
+        <br>
+        
+        <table class="table table-hover table-striped table-condensed">
+            <tr>
+                <th>Documento</th>
+                <th>Usuario</th>
+                <th>Tipo</th>
+                <th>Data</th>
+            </tr>
+            
+            {% for at in atualizacoes  %}
+                <tr> 
+                    
+                    <td>
+                        {% if at.numero_cadastro != ' '%}
+                            {% if at.tipo != 'Exclusão' and at.numero_cadastro %}
+                            <a href="{{url_for('main.cadastro_completo', cadastro_numero = at.numero_cadastro)}}">
+                                Cadastro nº <strong> {{at.numero_cadastro}} </strong>
+                            </a>
+                            {% else %}
+                                Cadastro nº <strong> {{at.numero_cadastro}} </strong>
+                            {% endif %}   
+
+                        {% else %}
+                            {% if at.tipo != 'Exclusão' and at.numero_termo%}
+                                <a href="{{url_for('termos.termo_numero', numero_termo = at.numero_termo)}}">
+                                    Termo nº {{at.numero_termo}}
+                                </a>
+                            {% else %}
+                                Termo nº {{at.numero_termo}}
+                            {% endif %}
+
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% for u in user if u.id == at.id_usuario %}
+                        
+                            {{u.user_name}}
+                        {% endfor %}
+                        </td>
+                    
+                    
+                    <td>
+                        {{at.tipo}}
+                    </td>
+                    <td>
+                        {{at.data_atualizacao}}
+                    </td>
+                
+
+                </tr> 
+            {%endfor%}
+    
+    
+        </table>
+    </div>
+</div>
+                
+{% endblock content %}
+

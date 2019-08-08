@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Meus Dados</h2>
+    <hr>
+    Nome: {{user.user_name}}<br>
+    Email: {{user.user_email}}<br>
+    Nível de Acesso: {{user.user_cat}}<br>
+    Cadastrado em : {{user.retorna_data(user.registration_date)}}
+    
+
+{% endblock %}
+</div>

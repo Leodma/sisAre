@@ -1,0 +1,58 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+
+    <div class="container form">
+            <h2 class="form">Busca</h2>
+            <hr>
+
+
+            <form method="GET" action=" ">
+                <h4>Selecione uma das opções  abaixo para a busca</h4>
+                <input type="submit" class="btn btn-default btn-lg btn-block"  value="Termo de Compromisso" name="bd">
+                <input type="submit" class="btn btn-default btn-lg btn-block" value="Cadastros" name="bd">
+            </form>
+            <hr>
+            <h4>Buscar 
+            {% if request.args.get('bd') %}
+                em {{ request.args.get('bd') }}
+                
+            {% endif %}
+            </h4>
+            <hr>
+            {% if request.args.get('bd') %}
+                <form class="form" method="POST" action="" role="form">
+
+                    {{form.hidden_tag()}}
+                    {% for field, errors in form.errors.items() %}
+                        <div class="bg-warning">
+                        {{ form[field].label }}: {{ ', '.join(errors) }}
+                        </div>
+                    {% endfor %}
+
+                    <div class="form-group">
+                        {{form.busca.label}}
+                        {{form.busca(class='form-control')}}   
+                    </div>
+                
+                    {%  if request.args.get('bd') == 'Termo de Compromisso' %}
+
+                        <div class="form-group">
+                            {{form.criterio_termo.label}}
+                            {{form.criterio_termo(class='form-control')}}
+                        </div>
+                    {% else %}
+                        <div class="form-group">
+                            {{form.criterio_cad.label}}
+                            {{form.criterio_cad(class='form-control')}}
+                        </div>
+                    {% endif %}
+
+
+                     {{form.submit(class='btn btn-success')}}
+            </form>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

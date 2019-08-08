@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="login-container">
+
+        <div class="login-frame">
+            <div class="login-titulo-box"><img src="{{url_for('static',filename='img/logo_branco.png')}}" style="width: 130px"></div>
+            <form class="login-form" method="POST" action="" role="form">
+                <div class="login-form-title">Entrar</div>
+                <small>Entre contado com o administrador do sistema para obter acesso</small><hr>
+
+                {{form.hidden_tag()}}
+                {% for field, errors in form.errors.items() %}
+                    <div class="bg-warning">
+                    {{ form[field].label }}: {{ ', '.join(errors) }}
+                    </div>
+                {% endfor %}
+                    
+                    {{form.email(class='login-form-field', placeholder='E-mail ou nome de usuário')}}    
+                                        
+                    {{form.password(class='login-form-field', placeholder='Senha')}}<br>
+                    {{form.submit(class='login-form-submit')}}   
+                                    
+            </form>
+            
+           
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+    <div class="container">
+    <h1> Lista de Cadastros</h1>
+    <hr>
+    <h2> {{titulo}} -  <strong>{{cadastros |length}}</strong></h2>
+    <br>
+
+        <table class="table table-hover table-striped table-condensed">
+            <tr>
+                <th>Numero</th>
+                <th>Titulo</th>
+                <th>Situacao</th>
+                <th>Abrir</th>
+            </tr>
+            
+            {% for cad in cadastros %}
+                <tr>
+                    
+                    <td><strong>{{cad.numero}}</strong></td>
+                    <td>{{cad.titulo}}</td>
+                    <td>{{cad.situacao}}</td>
+                    <td>
+                        <a href="{{url_for('main.cadastro_completo',cadastro_numero=cad.numero)}}">Visualizar</a>
+                    </td>
+                
+                    
+                </tr> 
+            {%endfor%}
+
+
+        </table>
+    </div>
+{% endblock content %}

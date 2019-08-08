@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+    <div class="container container-cadastro">
+       
+        <div class="exibe-cadastro">
+                <h2> <span>{{responsavel.nome}}</span></h2>
+               
+        </div>
+        <hr>
+  
+            <ul class="exibe-cadastro lista list-group">
+              
+               
+                <li class="list-group-item"><strong>CPF:  </strong>{{responsavel.cpf}}</li>
+                <li class="list-group-item"><strong>Unidade:  </strong>{{responsavel.instituicao or 'Dados não informados'}}</li>
+                <li  class="list-group-item"><strong>Email:  </strong>{{responsavel.email or 'Dados não informados'}}</li>
+                <li class="list-group-item"><strong>Telefone:  </strong>{{responsavel.telefone or 'Dados não informados'}}</li>
+                <!-- <li class="list-group-item">Insituição: <strong>{{responsavel.instituição}}</strong></li> -->
+            </ul>
+            <p class="text-right"><a type="button" class="btn btn-default btn-sm" href="{{url_for('main.edita_responsavel', responsavel_id=responsavel.id)}}">Editar dados do Responsável</a></p>
+                <hr>
+                <h4>Cadastros sob sua responsabilidade: <span>{{total}}</span></h4>
+                
+                <table class="table table-hover table-striped table-condensed">
+                        <tr>
+                            <th>Numero</th>
+                            <th>Titulo</th>
+                            <th>Abrir</th>
+                        </tr>
+                       
+
+                            {% for cadastro in cadastros %}
+                            <tr>
+                            <td>{{cadastro.numero}}</td>
+                            <td>{{cadastro.titulo}}</td>
+                            <td> <a  class="btn btn-success btn-xs" href="{{url_for('main.cadastro_completo',cadastro_numero=cadastro.numero)}}">Visualizar</a></td>
+                            </tr>
+        
+                            {% endfor %}
+                        
+                        
+                </table>
+               
+                
+                
+            <hr>
+            <br>
+            <p class="text-center"><a type="button" class="btn btn-primary" href="{{url_for('main.lista_responsaveis')}}">Voltar</a></p>
+            
+
+    </div>
+
+{% endblock content %}

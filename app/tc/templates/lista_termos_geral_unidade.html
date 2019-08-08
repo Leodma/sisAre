@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+      
+    <div class="container">
+
+    <h2>Termos de Compromisso por Unidade</h2>
+    <br>
+    <hr>
+        <table class="table table-hover table-striped table-condensed">
+            <tr>
+                <th class="text-center">Unidade</th>
+                <th class="text-center">Total de Termos</th>
+                <th class="text-center">Ver Termos</th>
+                <th class="text-center">Dados UD</th>
+            </tr>
+           
+            {% for ud in unidades %}
+                <tr>
+                    
+                    <td><strong>{{ud.nome}}</strong></td>
+                    <td class="text-center">{{ termos | selectattr('unidade','equalto',ud.id)| list |length }}</td>
+                    <td class="text-center">
+                        <a class="btn btn-success btn-xs"  href="{{url_for('termos.termos_da_unidade',id_ud=ud.id)}}">Visualizar</a>
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-xs"  href="{{url_for('main.edita_unidade', unidade=ud.nome)}}">Editar</a>
+                    </td>
+                
+                    
+                </tr> 
+            {%endfor%}
+
+
+        </table>
+    </div>
+
+    
+                   
+
+                    <td class="text-center">
+{% endblock content %}

@@ -1,0 +1,69 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+
+    <div class="container form">
+            <h2 class="form">{{unidade.nome}}</h2>
+            <hr>
+            <h4>Editar Dados</h4>
+            {{form.hidden_tag()}}
+
+            {% for field, errors in form.errors.items() %}
+                <div class="bg-warning">
+                  {{ form[field].label }}: {{ ', '.join(errors) }}
+                </div>
+            {% endfor %}
+            <br>
+
+            <form class="form" method="POST" action="" role="form">
+                {{form.hidden_tag()}}
+                
+                <div class="form-group">
+                    {{form.cnpj.label}}
+                    {{form.cnpj(class='form-control')}}
+                </div>
+                <div class="form-group">
+                    {{form.endereco.label}}
+                    {{form.endereco(class='form-control')}}
+                </div>
+
+                <div class="panel panel-default">
+                        <div class="panel-heading">Endereço</div>
+                    
+                        <fieldset class="panel-body">
+                    
+                            <div class="form-group row">       
+                                <div class="col-md-7">
+                                    {{form.cidade.label (class='col-sm-2 control-label')}}
+                                    {{form.cidade(class='form-control')}}
+                                </div>
+                                <div class="col-md-2">
+                                    {{form.estado.label}}
+                                    {{form.estado(class='form-control')}}
+                                </div>
+            
+                                <div class="col-md-3">
+                                    {{form.cep.label}}
+                                    {{form.cep(class='form-control')}}
+                                </div>
+                            </div>    
+                        </fieldset>        
+                    </div>
+
+                <div class="form-group">
+                    {{form.chefe_geral.label}}
+                    {{form.chefe_geral(class='form-control')}}
+                </div>
+
+                <div class="form-group">
+                    {{form.telefone.label}}
+                    {{form.telefone(class='form-control')}}
+                </div>
+
+                <a href="{{url_for('main.cadastros_unidade_geral')}}" class="btn btn-primary">Voltar</a>
+                {{form.submit(class='btn btn-success')}}
+        </form>
+    </div>
+
+
+{% endblock %}

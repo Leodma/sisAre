@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+    <div class="container">
+    <h1> Relação de Responsáveis pelo Cadastro</h1>
+    <hr>
+    <h2>Total de Responsáveis <strong>{{numero}}</strong></h2>
+    <br>
+
+        <table class="table table-hover table-striped table-condensed">
+            <tr>
+                <th>Nome</th>
+                <th>Instituição</th>
+                <th>Telefone</th>
+                <th>Detalhes</th>
+                <th>Editar</th>
+            </tr>
+            
+            {% for responsavel in responsaveis %}
+                <tr>
+                    
+                    <td><strong>{{responsavel.nome}}</strong></td>
+                    <td>{{responsavel.telefone or 'Clique em Editar para Inserir'}}</td>
+                    <td>{{responsavel.email or 'Clique em Editar para Inserir'}}</td>
+                    <td>
+                        <a  class="btn btn-success btn-xs"  href="{{url_for('main.dados_responsavel', responsavel_id=responsavel.id, cadastro='aaaa')}}">Visualizar</a>
+                    </td>
+                    <td>
+                        <a  class="btn btn-default btn-xs"  href="{{url_for('main.edita_responsavel', responsavel_id=responsavel.id)}}">Editar</a>
+                    </td>
+                   
+                </tr> 
+            {%endfor%}
+
+
+        </table>
+    </div>
+{% endblock content %}

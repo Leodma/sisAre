@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+    <div class="container container-cadastro">
+       
+        <div class="exibe-cadastro ">
+                <h2> Cadastro nº <span>{{cadastro.numero}}</span></h2>
+                <h3>{{cadastro.titulo}}</h3>
+                <h4>{{cadastro.unidade}}</h4>
+        </div>
+        <hr>
+  
+            <ul class="exibe-cadastro lista list-group">
+               
+                <li class="list-group-item">Tipo Acesso: <strong>{{cadastro.acesso}}</strong></li>
+                <li  class="list-group-item">Data do Cadastro: <strong>{{cadastro.data_cadastro}}</strong></li>
+                <li  class="list-group-item">Situação do Cadastro: <strong>{{cadastro.situacao}}</strong></li>
+                <li class="list-group-item">Modalidade: <strong>{{cadastro.modalidade}}</strong></li>
+                <li class="list-group-item">Finalidade: <strong>{{cadastro.finalidade}}</strong></li>
+                
+                <li> 
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Responsavel</div>
+                        
+                            <fieldset class="panel-body">
+                                <ul>   
+                                    <li>{{ responsavel }}</li>
+                                    <li>{{cadastro.cpf}}</li>  
+                                </ul> 
+                            </fieldset>        
+                        </div> 
+                </li>
+
+                <li> 
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Autorização - Para Cadastros realizados conforme ... lelelel</div>
+                            
+                        <fieldset class="panel-body">
+                            <ul>    
+                                <li>Instituição Autorização: <strong>{{cadastro.aut_inst or 'Não Definido'}}</strong></li>
+                                <li>Processo Autorização: <strong>{{cadastro.aut_processo or 'Não Definido'}}</strong></li>
+                                <li>Numero Autorização: <strong>{{cadastro.aut_numero or 'Não Definido'}}</strong></li>
+                                <li>Validade Autorização: <strong>{{cadastro.aut_validade or 'Não Definido'}}</strong></li>
+                            </ul> 
+                        </fieldset>        
+                    </div> 
+                </li>
+               
+                <li class="list-group-item">CURB: <strong>{{cadastro.curb or 'Não definido'}}</strong></li>
+                <li class="list-group-item">
+                    <span class="item-lista-cadastro">Início do Cadastro: <strong>{{cadastro.data_inicio}}</strong></span>
+                    <span class="item-lista-cadastro">Fim do Cadastro: <strong>{{cadastro.data_fim}}</strong></span>
+                </li>
+
+                <li> 
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Equipe</div>
+                                
+                        <fieldset class="panel-body">
+                            <div class="item-lista-cadastro ">
+                                    <strong>Nome</strong>
+                                <ul class="numerada">      
+                                   
+                                        <li>{{cadastro.membro_nome}}</li>
+                                    
+                                </ul>
+                            </div>
+
+                            <div class="item-lista-cadastro">
+                                    <strong>Instituição</strong>
+                                    <ul class="numerada">      
+                                      
+                                        <li>{{cadastro.membro_instituicao}}</li>
+                                       
+                                    </ul>
+                                </div>
+                                
+                            </fieldset>        
+                        </div> 
+                    </li>
+
+
+                    <li> 
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Componente Acessado</div>
+                                        
+                                <fieldset class="panel-body">
+                                    <div class="item-lista-cadastro ">
+                                        <strong>Tipo Componente:</strong>
+                                        <ul class="numerada">    
+                                            <li>{{cadastro.componente_tipo}}</li>
+                                        </ul>
+                                    </div>
+        
+                                    <div class="item-lista-cadastro">
+                                            <strong>Espécie Componente:</strong>
+                                            <ul class="numerada">         
+                                             <li>
+                                               {{cadastro.componente_especie}}
+                                             </li> 
+                                            </ul>
+                                        </div>
+                                        
+                                    </fieldset>        
+                                </div> 
+                            </li>
+
+
+                <li class="list-group-item">Raça Localmente Adaptada: <strong>{{cadastro.raca_local or 'Não Definido'}}</strong></li>
+                <li class="list-group-item">Envio de Amostra: <strong>{{cadastro.envio_amostra or 'Não Definido'}}</strong></li>
+                <li class="list-group-item">Envio CTA: <strong>{{cadastro.envio_cta or 'Não Definido'}}</strong></li>
+                <li class="list-group-item">Componente Acessado: <strong>{{cadastro.componente_acessado or 'Não Definido'}}</strong></li>
+            </ul>
+            <hr>
+            <br>
+            <a type="button" class="btn btn-primary" href="{{url_for('main.lista_cadastros')}}">Voltar</a>
+            <a type="button" class="btn btn-info" href="#">Editar</a>
+            <a type="button" class="btn btn-danger" href="#">Deletar</a>
+    </div>
+
+
+{{cadastro}}
+{% endblock content %}

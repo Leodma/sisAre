@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+    <h2>Inserir Termo de Compromisso</h2>
+    <hr>
+   <form method="POST", action="">
+    {{form.hidden_tag()}}
+    {% for field, errors in form.errors.items() %}
+        <div class="bg-warning">
+            {{ form[field].label }}: {{ ', '.join(errors) }}
+        </div>
+    {% endfor %}
+    
+    <div class="form-group">
+        {{form.processo_numero.label}}
+        {{form.processo_numero(class='form-control')}}
+    </div>
+
+    <div class="form-group">
+        {{form.anexo.label}}
+        {{form.anexo(class='form-control')}}
+    </div>
+    <div class="form-group">
+        {{form.finalidade.label}}
+        {{form.finalidade(class='form-control')}}
+    </div>
+    <div class="form-group">
+        {{form.tc_firmado.label}}
+        <div class="checkbok">
+            {{form.tc_firmado}}
+        </div>
+    </div>
+    <div class="form-group">
+        {{form.numero_tc_firmado.label}}
+        {{form.numero_tc_firmado(class='form-control')}}
+    </div>
+    <div class="form-group">
+        {{form.unidade.label}}
+        {{form.unidade(class='form-control')}}
+    </div>
+    <div class="text-right">
+        {{form.submit(class='btn btn-success')}}
+    </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

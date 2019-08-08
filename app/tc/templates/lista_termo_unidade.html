@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+    <div class="container">
+    <h1> {{unidade.nome}}</h1>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-heading">Dados da Unidade</div> 
+            <ul class="exibe-cadastro lista list-group">
+              
+                <li class="list-group-item"><strong>CNPJ:  </strong>{{unidade.cnpj}}</li>
+                <li class="list-group-item"><strong>Endereço:  </strong>{{unidade.endereço or 'Dados não informados'}} - {{unidade.cidade or ''}} - {{unidade.estado or ''}}</li>
+                <li  class="list-group-item"><strong>CEP:  </strong>{{unidade.cep or 'Dados não informados'}}</li>
+                <li class="list-group-item"><strong>Chefe-Geral:  </strong>{{unidade.chefe_geral or 'Dados não informados'}}</li>
+                <li class="list-group-item"><strong>Telefone:  </strong>{{unidade.telefone or 'Dados não informados'}}</li>
+           
+            </ul>
+        </div>
+    <h2 class="destaque-verde">Total de Termos de Compromisso: <strong>{{termos|length}}</strong></h2>
+ 
+        <table class="table table-hover table-striped table-condensed">
+            <tr>
+                <th>Processo</th>
+                <th class=text-center>Anexo</th>
+                <th class=text-center>Detalhes</th>
+            </tr>
+            
+            {% for termo in termos %}
+                <tr>
+                    
+                    <td><strong>{{termo.processo_numero}}</strong></td>
+                    <td>{{termo.anexo}}</td>
+                    <td class=text-center>
+                        <a class="btn btn-success btn-xs"  href="{{url_for('termos.termo_compromisso',termo_id=termo.id)}}">Visualizar</a>
+                    </td>
+                
+                    
+                </tr> 
+            {%endfor%}
+
+
+        </table>
+    </div>
+
+    
+{% endblock content %}

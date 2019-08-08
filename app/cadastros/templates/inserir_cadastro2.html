@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/insere_campo.js') }}"></script>
+{% endblock scripts %}
+
+{% block content %}
+    <div class="container form">
+        <h2 class="form">Inserir Cadastro</h2>
+        <hr><br>
+        <form class="form" method="POST" action="" role="form">
+                {{form.hidden_tag()}}
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Responsável</div>
+        
+                <fieldset class="panel-body">
+        
+                    <div id="subforms-container">
+                        {% for subform in form.cpf %}
+                            <div class="subformulario" id="cpf-0-form" data-index="0">
+                                    <div class="col-md-7">
+                                        {{subform.responsavel (class='form-control', placeholder='Nome Completo')}}
+                                    </div>
+    
+                                    <div class="col-md-4">
+                                        {{subform.cpf (class='form-control', placeholder='000.000.000-00')}}  
+                                    </div> 
+                                    <div class="col-md-1"> 
+                                         <a class="remove" href="#"  onclick="deletaCampo(this)">
+                                            <span class="glyphicon glyphicon-remove red" aria-hidden="true" > </span>
+                                        </a>            
+                                    </div>                               
+                            </div>
+                        {% endfor %}
+                    </div> 
+
+                    <div class="text-right">
+                        <a class="btn btn-primary" id="add" href="#" onclick="insereCampo( )" >Adicionar Responsável</a>
+                    </div>     
+                </fieldset> 
+                      
+            </div>
+
+
+    
+    
+            <a class="btn btn-success" href="{{url_for('main.index')}}">Voltar</a>
+            {{form.submit (class='btn btn-primary')}}
+        </form>
+    </div>
+{% endblock %}
+
+
+    

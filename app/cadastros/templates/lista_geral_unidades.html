@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+      
+    <div class="container">
+
+    <h2>Cadastros por Unidade</h2>
+    <br>  
+        <table class="table table-hover table-striped table-condensed">
+            <tr>
+                <th class="text-center">Unidade</th>
+                <th class="text-center">Novos</th>
+                <th class="text-center">Regularização</th>
+                <th class="text-center">Adequação</th>
+                <th class="text-center">Total de Cadastros</th>
+                <th class="text-center">Cadastros</th>
+                <th class="text-center">Dados UD</th>
+            </tr>
+           
+            {% for ud in unidades %}
+                <tr>
+                    
+                    <td><strong>{{ud.nome}}</strong></td>
+                    <td class="text-center">{{ cadastros | selectattr('unidade','equalto',ud.nome)|map(attribute='modalidade')|select('equalto','Cadastro Novo')|list |length }}</td>
+                    
+                    <td class="text-center">{{ cadastros | selectattr('unidade','equalto',ud.nome)|map(attribute='modalidade')|select('equalto','Regularização')|list |length }} </td>
+                    
+                    <td class="text-center">{{ cadastros | selectattr('unidade','equalto',ud.nome)|map(attribute='modalidade')|select('equalto','Adequação')|list |length }} </td>
+                    
+                    <td class="text-center">{{cadastros | selectattr('unidade','equalto',ud.nome)|list|length}}</td>
+                    
+                    <td class="text-center">
+                        <a class="btn btn-success btn-xs"  href="{{url_for('main.cadastro_por_unidade',unidade=ud.nome)}}">Visualizar</a>
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-xs"  href="{{url_for('main.edita_unidade', unidade=ud.nome)}}">Editar</a>
+                    </td>
+                
+                    
+                </tr> 
+            {%endfor%}
+
+
+        </table>
+    </div>
+
+    
+                   
+
+                    <td class="text-center">
+{% endblock content %}

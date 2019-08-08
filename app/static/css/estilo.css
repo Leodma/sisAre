@@ -1,0 +1,211 @@
+body{
+    font-family: 'PT Sans', sans-serif;
+}
+
+h2 span{
+    color: darkgreen;
+    font-weight: bold;
+    
+}
+
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.login-frame{
+    width: 400px;
+    height: 495px;
+    border:1px solid #949794;
+    margin-top: 20px;
+    box-lines: 1.5em
+}
+
+.login-form{
+    padding: 20px;
+    
+}
+
+.login-titulo-box{
+    background-color:#449d44;
+    border-bottom: 2px solid #398439;
+    text-align: center;
+    height: 80px;
+    padding-top: 5px;
+   
+    color: white;
+    width: 100%;
+   
+}
+
+.login-form-title{
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.login-form-field{
+    display: inline-block;
+    width: 100%;
+    height: 60px;
+    border: 1px solid lightgray;
+    font-size: 1.3em;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.login-form-field:focus{
+    border: 2px solid #449d44;
+
+    
+}
+.login-form-submit{
+    background-color:#449d44;
+    border-bottom: 2px solid #398439;
+    width: 100%;
+    height: 60px;
+    color:white;
+    font-size: 1.2em;
+}
+
+.form-registro{
+    width: 70%;
+}
+
+.box-senha{
+    margin-bottom: 20px;
+}
+
+.exibe-cadastro{
+    line-height: 1,5em;
+    list-style: none;
+}
+
+.exibe-cadastro h4{
+    padding: 5px;
+    margin: 10px 0;
+    background-color: #449d44;
+    color: white;
+    font-weight: bold;
+    
+
+}
+.lista-cadastro{
+    line-height: 2em;
+    
+}
+
+.green{
+    color: #398439;
+}
+
+.red{
+    color: firebrick;
+}
+
+.item-lista-cadastro{
+    width: 49%;
+    text-align: left;
+    display: inline-block;
+    vertical-align: text-top;
+}
+.numerada{
+    list-style: decimal;
+    line-height: 1.7em;
+}
+
+.lista_limpa{
+    list-style: none;
+}
+
+
+.graficos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: center; 
+    margin-bottom: 10px;  
+    text-align: center;
+}
+
+.grafico-box{
+    margin:20px;
+}
+.grafico-box P{
+    font-size: 1.2em;     
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+.dropdown:hover{
+    background-color: #333333;
+    border-radius: 10px 10px 0 0;
+}
+  
+
+.dropdown .dropdown-box{
+    display: none;
+    position: absolute;
+    background-color: #333333;
+    color: white;
+    min-width: 180px;
+    z-index: 999999;
+    padding: 10px;
+    list-style: none;
+    border-radius: 0 0 10px 10px;
+}
+
+
+.dropdown-box li{
+    height: 35px;  
+}
+
+.dropdown-box a{
+    text-decoration: none;
+    color: white; 
+}
+
+.dropdown-box a:hover{
+    color: #449d44;
+    background-color: #505050;
+}
+
+.dropdown:hover .dropdown-box{
+    display: block;
+    background-color: #333333;
+}
+
+  
+.subformulario{
+    margin-top: 15px;
+}
+  
+
+.destaque-verde{
+    background-color: #449d44;
+    color: white;
+    padding: 10px;
+}
+
+.box-numeros{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.box-numeros div{
+    background-color: #333333;
+    color: white;
+    font-size: 1.3em;
+    margin: 5px;
+    text-align: center;
+    padding: 20px 5px;
+    flex: 1 1 200px;
+}
+  

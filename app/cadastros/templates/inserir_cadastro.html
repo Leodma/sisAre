@@ -1,0 +1,226 @@
+{% extends "layout.html" %}
+
+{% block links %}
+<script src="{{ url_for('static', filename='js/insere_campo.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container form">
+        <h2 class="form">Inserir Cadastro</h2>
+        {{form.hidden_tag()}}
+        {% for field, errors in form.errors.items() %}
+            <div class="bg-warning">
+              {{ form[field].label }}: {{ ', '.join(errors) }}
+            </div>
+        {% endfor %}
+        <hr><br>
+        <form class="form" method="POST" action="" role="form">
+                {{form.hidden_tag()}}
+
+            <div class="form-group">
+                {{form.numero.label}}
+                {{form.numero(class='form-control')}}
+
+            </div>
+            <div class="form-group">
+                {{form.unidade.label}}
+                {{form.unidade(class='form-control')}}
+
+            </div>
+            <div class="form-group">
+                {{form.acesso.label}}
+                <div class="checkbox">
+                    {{form.acesso(class='form-control')}}
+                </div>
+            </div>         
+            
+            <div class="form-group">
+                    {{form.titulo.label}}
+                    {{form.titulo(class='form-control')}}
+    
+            </div>
+
+            <div class="form-group">
+                    {{form.data_cadastro.label}}
+                    {{form.data_cadastro(class='form-control')}}
+    
+            </div>
+                
+            <div class="form-group">
+                    {{form.situacao.label}}
+                    {{form.situacao(class='form-control')}}
+    
+            </div>
+
+            <div class="panel panel-default">
+                    <div class="panel-heading">Responsável</div>
+                
+                    <fieldset class="panel-body text-center">
+            
+                        <div class="form-group row text-left">
+                                
+                            <div class="col-md-6">
+                                {{form.responsavel.label}}
+                                {{form.responsavel (class='form-control')}}
+                            </div>
+            
+                            <div class="col-md-6">
+                                {{form.cpf.label}}
+                                {{form.cpf (class='form-control')}}
+                            </div>
+                        </div>
+                        <small class="text-center">Se o cadastro possuir mais de um Responsável, inserir 1 dado (Nome / CPF) por linha.</small>   
+
+                    </fieldset>        
+                </div>
+
+                   
+
+            <div class="form-group">
+                {{form.modalidade.label}}
+                {{form.modalidade(class='form-control')}}
+            </div>    
+            
+            <div class="form-group">
+                {{form.finalidade.label}}
+                <div class="checkbox">
+                    {{form.finalidade}}
+                </div>
+            </div> 
+                
+                <div class="panel panel-default">
+                        <div class="panel-heading">Data Início e Fim da Atividade</div>
+                
+                        <fieldset class="panel-body">
+                
+                                <div class="form-group row">
+                                  
+                                  <div class="col-md-6">
+                                    {{form.data_inicio.label}}
+                                    {{form.data_inicio (class='form-control', placeholder='Data Inicio')}}
+                                  </div>
+                
+                                  <div class="col-md-6">
+                                    {{form.data_fim.label}}
+                                   {{form.data_fim (class='form-control', placeholder='Data Fim')}}
+                                  </div>
+                                </div>    
+                        </fieldset>        
+                    </div>  
+                
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Equipe</div>
+                    
+                        <fieldset class="panel-body text-center">
+                    
+                                <div class="form-group row text-left">
+                                      
+                                    <div class="col-md-6">
+                                        {{form.membro_nome.label}}
+                                        {{form.membro_nome (class='form-control')}}
+                                    </div>
+                    
+                                    <div class="col-md-6">
+                                        {{form.membro_instituicao.label}}
+                                        {{form.membro_instituicao (class='form-control')}}
+                                    </div>
+                                </div>
+                            <small class="text-center">Se o cadastro possuir mais de um Membro, inserir 1 dado (nome / instituição) por linha.</small>    
+                        </fieldset>        
+                    </div> 
+                        
+                        <div class="panel panel-default">
+                                <div class="panel-heading">Componente</div>
+                        
+                                <fieldset class="panel-body text-center">
+                        
+                                    <div class="form-group row text-left">
+                                        
+                                        <div class="col-md-6">
+                                        {{form.componente_tipo.label}}
+                                        {{form.componente_tipo (class='form-control')}}
+                                        </div>
+                    
+                                        <div class="col-md-6">
+                                        {{form.componente_especie.label}}
+                                        {{form.componente_especie (class='form-control', placeholder='Numero do Processo')}}
+                                        </div>
+                                    </div>  
+                                    <small class="text-center">Se o cadastro possuir mais de um Componente, inserir 1 dado (componente / tipo) por linha.</small>    
+                                </fieldset>        
+                            </div> 
+                            
+                    <div class="form-group">
+                        {{form.raca_local.label}}
+                        {{form.raca_local (class='form-control', placeholder='Caso não possua, deixar o campo vazio')}} 
+                                
+                    </div>
+
+                    <div class="form-group">
+                            {{form.cta.label}}
+                            {{form.cta (class='form-control')}} 
+                                        
+                    </div>
+                    
+                    <div class="form-group">
+                        {{form.componente_acessado.label}}
+                        {{form.componente_acessado (class='form-control')}} 
+                                    
+                    </div>
+
+
+                    <div class="form-group">
+                            {{form.envio_amostra.label}}
+                            <div class="radio">
+                                {{form.envio_amostra}}
+                            </div>
+                    </div> 
+    
+                
+                    <div class="panel panel-default">
+                            <div class="panel-heading">Autorização Prévia concedida pelo CGEN (M.P. 2186-16/2001)</div>
+                    
+                            <fieldset class="panel-body">
+                    
+                                    <div class="form-group row">
+                                      
+                                      <div class="col-md-3">
+                                        {{form.aut_inst.label}}
+                                        {{form.aut_inst (class='form-control', placeholder='Instituicao Autorização')}}
+                                      </div>
+                    
+                                      <div class="col-md-3">
+                                        {{form.aut_processo.label}}
+                                       {{form.aut_processo (class='form-control', placeholder='Numero do Processo')}}
+                                      </div>  
+        
+                                      <div class="col-md-3">
+                                        {{form.aut_numero.label}}
+                                        {{form.aut_numero (class='form-control', placeholder='Numero da Autorização')}}
+                                      </div>  
+                    
+                                      <div class="col-md-3">
+                                        {{form.aut_validade.label}}
+                                        {{form.aut_validade (class='form-control', placeholder='Data de Validade')}}
+                                      </div>   
+                            </fieldset>        
+                        </div>    
+                
+                        <div class="form-group">
+                                {{form.curb.label}}
+                                <div class="radio">
+                                    {{form.curb}}
+                                </div>
+                        </div> 
+        
+
+    
+    
+            <a class="btn btn-success" href="{{url_for('main.index')}}">Voltar</a>
+            {{form.submit (class='btn btn-primary')}}
+        </form>
+    </div>
+{% endblock %}
+
+
+    

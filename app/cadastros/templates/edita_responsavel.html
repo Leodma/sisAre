@@ -1,0 +1,42 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+
+    <div class="container form">
+            <h2 class="form">Editar Responsável</h2>
+            <hr><br>
+            {{form.hidden_tag()}}
+            {% for field, errors in form.errors.items() %}
+                <div class="bg-warning">
+                  {{ form[field].label }}: {{ ', '.join(errors) }}
+                </div>
+            {% endfor %}
+            <form class="form" method="POST" action="" role="form">
+                {{form.hidden_tag()}}
+                <div class="form-group">
+                    {{form.nome.label}}
+                    {{form.nome(class='form-control')}}
+                </div>
+                <div class="form-group">
+                    {{form.cpf.label}}
+                    {{form.cpf(class='form-control', disable=True)}}
+                </div>
+                <div class="form-group">
+                    {{form.telefone.label}}
+                    {{form.telefone(class='form-control')}}
+                </div>
+                <div class="form-group">
+                    {{form.email.label}}
+                    {{form.email(class='form-control')}}
+                </div>
+                <div class="form-group">
+                    {{form.instituicao.label}}
+                    {{form.instituicao(class='form-control')}}
+                </div>
+                <a href="{{url_for('main.dados_responsavel',responsavel_id = id)}}" class="btn btn-primary">Voltar</a>
+                {{form.submit(class='btn btn-success')}}
+        </form>
+    </div>
+
+
+{% endblock %}

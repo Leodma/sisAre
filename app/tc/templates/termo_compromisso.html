@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+    <div class="container container-cadastro">
+       
+        <div class="exibe-cadastro ">
+                <h2> Termo de Compromisso</h2>
+                <h3 class="green">Processo Número: {{termo.processo_numero}}</h3>
+                <h4>{{unidade.nome}}</h4>
+        </div>
+        <hr>
+  
+            <ul class="exibe-cadastro lista list-group">
+               
+                <li class="list-group-item">Finalidade: <strong>{{termo.finalidade}}</strong></li>
+                <li class="list-group-item">Anexo: <strong>{{termo.anexo}}</strong></li>
+                
+                <li  class="list-group-item">Termo Firmado: <strong>{{termo.tc_firmado}}</strong></li>
+                <li  class="list-group-item">Número do Termo Firmado: <strong>{{termo.numero_tc_firmado}}</strong></li> 
+               
+            <hr>
+            <br>
+            <a type="button" class="btn btn-primary" href="{{url_for('termos.termo_por_unidade')}}">Voltar</a>
+            <a type="button" class="btn btn-info" href="{{url_for('termos.editar_termo', termo_id = termo.id)}}">Editar</a>
+            <a type="button" class="btn btn-danger" href="{{url_for('termos.deletar_termo', termo_id = termo.id)}}">Deletar</a>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,137 @@
+{%import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    {# head #}
+    {% block head %}
+        <head>
+            <title> Sis ARE </title>
+            <meta charset="UTF-8">
+            <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static',filename='img/Sisare.ico')}}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+            <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet"> 
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+            <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+            <!-- <script src="{{ url_for('static', filename='js/adiciona_botao_cpf.js') }}"></script> -->
+            {% block links %}
+            {% endblock links %}
+        </head>
+    
+    {% endblock head %}
+
+    {# body #}
+    {% block body %}
+    <body>
+
+        {# navigation bar #}
+        {% block navbar %}
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="{{url_for('main.index')}}">
+                        <img alt="Embrapa" src="{{ url_for('static', filename='img/logo2.png')}}" style="width:20px"> 
+                        </a>     
+                    </div>
+                        {% if  current_user.is_authenticated %}
+                        <ul class="nav navbar-nav nav-list">
+                                <li><a href="{{url_for('main.index')}}">Sistema de Controle de Cadastros SIN/GAT/ARE</a></li>
+                        </ul>
+
+                        
+                        <ul class="nav navbar-nav pull-right nav-list">
+                            
+                            <li class="dropdown">
+                                <a href="{{url_for('main.lista_cadastros')}}">Cadastros</a>
+                                <ul class="dropdown-box">
+                                    <a href="{{url_for('main.insere_cadastro')}}"><li>Inserir</li></a>
+                                    <a href="{{url_for('main.lista_responsaveis')}}"><li>Cadastro/Responsável</li></a>
+                                    <a href="{{url_for('main.cadastros_unidade_geral')}}"><li>Cadastro/Unidade</li></a>
+                                    
+                                </ul>
+
+                            <li class="dropdown">
+                                <a href="#">Termos de Compromisso</a>
+                                <ul class="dropdown-box">
+                                    <a href="{{url_for('termos.insere_termo')}}"><li>Inserir</li></a>
+                                    <a href="{{url_for('termos.termo_por_unidade')}}"><li>Termo/Unidade</li></a>
+                                </ul>
+
+                            <li class="dropdown">
+                                <a href="{{url_for('main.lista_cadastros')}}">Usuários</a>
+                                <ul class="dropdown-box">
+                                    <a href="{{url_for('authentication.register_user')}}"><li>Inserir Usuário</li></a>
+                                    <a href="{{url_for('authentication.gerenciar_usuario')}}"><li>Gerenciar Usuários</li></a>
+                                </ul>
+                            </li>
+                           
+                            <li class="dropdown"><a href="#">
+                                Usuário: <strong style="color: #449d44">{{current_user.user_name.title()}}</strong>
+                            </a>
+                                <ul class="dropdown-box">
+                                    <a href="{{url_for('authentication.meus_dados')}}"><li>Meus Dados</li></a>
+                                    <a href="{{url_for('authentication.alterar_senha')}}"><li>Alterar Senha</li></a>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="{{url_for('authentication.log_out_user')}}">Sair</a>    
+                            </li>
+                            <li><a href="{{url_for('buscar.busca')}}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>  </a></li>
+
+                            
+                           
+                             
+                        </ul>
+
+                             
+                        
+                        {%  else %}
+                        <ul class="nav navbar-nav nav-list">
+                                <li><a href="#">Sistema de Controle de Cadastros SIN/GAT/ARE Embrapa</a></li>
+                        </ul>
+
+                        {% endif %}
+                   
+                    </div>
+                </div>
+            </nav>
+        {% endblock navbar %}
+
+        
+        {# flash messaging #}
+            {% for message in  get_flashed_messages() %}
+                <div class="container alert alert-info">
+                    <button type="button" class="close" data-dismiss='alert'></button>
+                    {{message}}
+                </div>
+            {% endfor %}
+
+            {#  bloco para conteúdo das páginas #}
+            {% block content %} {% endblock content %}
+
+
+
+    {% endblock body %}
+
+
+    {# footer #}
+    {% block footer %}
+            <footer>
+                <div class="container ftr">
+                    <hr>
+                    <p class="text-center small"> Sistema de Controle de Cadastros - desenvolvido por Leo Alves - leodma@gmail.com &copy;	| 2019 </p>
+                </div>
+            </footer>
+    {% endblock footer %}
+
+    {% block scripts %}
+    {% endblock scripts %}
+</body>
+
+</html>

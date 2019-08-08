@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+    <div class="container">
+    <h1> Lista de Termos de Compromisso</h1>
+    <hr>
+    <h2> {{titulo}} -  <strong>{{termos |length}}</strong></h2>
+    <br>
+
+        <table class="table table-hover table-striped table-condensed">
+            <tr>
+                <th>Processo</th>
+                <th>Anexo</th>
+                <th>Finalidade</th>
+                <th>Abrir</th>
+            </tr>
+            
+            {% for termo in termos %}
+                <tr>
+                    
+                    <td><strong>{{termo.processo.numero}}</strong></td>
+                    <td>{{termo.anexo}}</td>
+                    <td>{{termo.finalidade}}</td>
+                    <td>
+                        <a href="{{url_for('termos.termo_compromisso',termo_id=termo.id)}}">Visualizar</a>
+                    </td>
+                
+                    
+                </tr> 
+            {%endfor%}
+
+
+        </table>
+    </div>
+{% endblock content %}
