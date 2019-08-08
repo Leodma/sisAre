@@ -117,7 +117,9 @@ def alterar_senha( ):
         return redirect(url_for('authentication.log_out_user'))
     return render_template('altera_senha.html', form=form)
 
-
+@at.app_errorhandler(404)
+def page_not_found(error):
+    return render_template('error404.html'), 404
 
      
     

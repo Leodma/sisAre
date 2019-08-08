@@ -19,11 +19,12 @@ def index():
     regulariza = Cadastro.query.filter_by(modalidade='Regularização').count()
     novo = Cadastro.query.filter_by(modalidade='Cadastro Novo').count()
     adequa = Cadastro.query.filter_by(modalidade='Adequação').count()
-    graph = [   (regulariza*100)//total_cadastros,
-                (novo*100)//total_cadastros,
-                (adequa*100)//total_cadastros,
-                regulariza, novo, adequa
-            ]
+    if regulariza and novo and adequa:
+        graph = [   (regulariza*100)//total_cadastros,
+                    (novo*100)//total_cadastros,
+                    (adequa*100)//total_cadastros,
+                    regulariza, novo, adequa
+                ]
     user= User.query.all()
     atualizacoes = AtualizacaoCadastro.query.order_by(db.desc('data_atualizacao')).limit(20)
    
