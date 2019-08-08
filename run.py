@@ -8,8 +8,7 @@ from app.auth.models import User
     with flask_app.app_context():
         db.create_all()
 
-        # if not User.query.filter_by(user_name='annathais').first():
-        #     User.create_user(user='annathais',email='annathais@embrapa.br', password='klgmd2331')
+
 
     
     flask_app.run()
