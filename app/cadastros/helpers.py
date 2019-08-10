@@ -22,6 +22,6 @@ def troca_por_nulo(valor):
 
 def porcentagem(valor, total):
     if valor and total:
-        return (valor//100)*total
+        return (valor*100)//total
     return 1
 
