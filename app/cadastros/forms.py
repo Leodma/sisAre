@@ -10,7 +10,7 @@ from app.cadastros.models import Cadastro, Unidades
 def verfica_cadastro(form, field): # validador de cadastro existente
     cadastro = Cadastro.query.get(field.data.upper())
     if cadastro:
-        raise ValidationError('Esse número já está cadastrado')
+        raise ValidationError('Esse número já está cadastrado ou está incorreto.')
 
 
 
@@ -24,7 +24,7 @@ class MultiCheckbox(SelectMultipleField):
 #     cpf = StringField('CPF')
 
 class CriaCadastro(FlaskForm):
-    numero = StringField('Numero do Cadastro', validators=[DataRequired(message='O número do cadastro é obrigatório'), Length(min=8,max=8 ,message='O número do cadastro deve possuir 8 caracteres'),verfica_cadastro])
+    numero = StringField('Numero do Cadastro', validators=[DataRequired(message='O número do cadastro é obrigatório'), Length(min=7,max=8 ,message='O número do cadastro deve possuir entre 7 e 8 caracteres'),verfica_cadastro])
     unidade = SelectField('Unidade', choices=[], validators=[DataRequired(message='É obrigatório inserir o nome da unidade')])
     titulo = StringField('Titulo do Projeto', validators=[DataRequired(message=('Preencimento Obrigatório'))])
     acesso =SelectField('Objeto do Acesso',choices=[(None,'Selecione uma opção'),('Patrimônio Genético', 'Patrimônio Genético'), ('Conhecimento Tradicional Associado', 'Conhecimento Tradicional Associado'), ('Patrimônio Genético e Conhecimento Tradicional Associado','Patrimônio Genético e Conhecimento Tradicional Associado')], validators=[DataRequired(message='Campo Obrigatório')])
