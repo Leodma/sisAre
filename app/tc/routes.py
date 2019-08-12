@@ -116,7 +116,7 @@ def deletar_termo(termo_id):
     
     if request.method == 'POST':
         usuario = current_user
-        atualizacao = AtualizacaoCadastro(  numero_cadastro = ' ', numero_termo = termo.processo_numero.data, tipo = 'Exclusão',  id_usuario=usuario.id)
+        atualizacao = AtualizacaoCadastro(  numero_cadastro = ' ', numero_termo = termo.processo_numero, tipo = 'Exclusão',  id_usuario=usuario.id)
         
         db.session.delete(termo)
         db.session.add(atualizacao)         
